@@ -2,7 +2,8 @@ package main
 
 import (
 	"fmt"
-	"internal/secure_requests"
+	"net/http"
+	"github.com/anthonyasanchez/streamosphere/backend/security"
 )
 
 func main() {
@@ -12,8 +13,10 @@ func main() {
 		fmt.Fprintf(w, "Hello Secure World")
 	})
 
-	sec_req = secure_requests.SecureRequest{
-		handler: mux
+	sec_req := security.SecureRequest{
+		Handler: mux,
 	}
+	fmt.Printf("Securing HTTPS\n")
 	sec_req.Secure() 
+
 }

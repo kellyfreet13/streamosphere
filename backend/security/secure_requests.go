@@ -1,4 +1,4 @@
-package internal
+package security
 
 import (
 	"crypto/tls"
@@ -7,7 +7,7 @@ import (
 )
 
 type SecureRequest struct {
-	handler *http.ServeMux
+	Handler *http.ServeMux
 }
 
 func (sr SecureRequest) Secure() {
@@ -15,12 +15,13 @@ func (sr SecureRequest) Secure() {
 	// TODO(anthonyasanchez): Add certs folder to a config.
 	certManager := autocert.Manager{
 		Prompt: autocert.AcceptTOS,
-		Cache:  autocert.DirCache("../../../certs"),
+		Cache:  autocert.DirCache("../../../../certs"),
 	}
+	
 	// http Server that uses address of ':8443' which is for https request, the handler defines api endpoints.
 	server := &http.Server{
 		Addr:    ":8443",
-		Handler: sr.handler,
+		Handler: sr.Handler,
 		TLSConfig: &tls.Config{
 			GetCertificate: certManager.GetCertificate,
 		},
