@@ -6,29 +6,23 @@ import (
 	"golang.org/x/crypto/acme/autocert"
 )
 
-type SecureRequest struct {
-	Handler *http.ServeMux
-}
-
-func (sr SecureRequest) Secure() {
+// Adds TLS to the server by adding TLSConfig 
+// @Params
+// server: server to accept traffic.
+// @Returns
+// certManager: Certification Manager to use when server is started.
+func SecureHTTPS(server *http.Server) (certManager autocert.Manager){
 	// certManager gets the CA certificate and key for TLS handshake.
 	// TODO(anthonyasanchez): Add certs folder to a config.
-	certManager := autocert.Manager{
+	certManager = autocert.Manager{
 		Prompt: autocert.AcceptTOS,
 		Cache:  autocert.DirCache("../../../../certs"),
 	}
 	
-	// http Server that uses address of ':8443' which is for https request, the handler defines api endpoints.
-	server := &http.Server{
-		Addr:    ":8443",
-		Handler: sr.Handler,
-		TLSConfig: &tls.Config{
-			GetCertificate: certManager.GetCertificate,
-		},
+	// Use the TSL config from autocert api.
+	server.TLSConfig = &tls.Config{
+			GetCertificate: certManager.GetCertificate, 
 	}
-	// The http server is listening to port 8080 for http request and will send an invalid response.
-	// TODO(anthonyasanchez): Redirect http traffic to https by changing the HTTPHandler.
-	go http.ListenAndServe(":8080", certManager.HTTPHandler(nil))
-	// Will by default use the TLSConfig in the construction of the server above.
-	server.ListenAndServeTLS("", "")
+
+	return certManager
 }
