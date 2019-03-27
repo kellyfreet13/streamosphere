@@ -1,19 +1,36 @@
 package api
 
 import (
-	"github.com/gin-gonic/contrib/static"
+//	"github.com/gin-gonic/contrib/static"
 	"github.com/gin-gonic/gin"
 )
 
-// Defines the API handles for server.
-func CreateApiHandler() *gin.Engine {
-	// Router from gin library that offers logging and routing capabilities.
-	router := gin.Default()
-	// Use a middleWareHandler which defines how to deal with headers. 
-	// gin.Recovery() is part of gib lib that offers recovery from crash with 505 error code. 
-	// router.Use(middleWareHandler(), gin.Recovery())
-	router.Use(static.Serve("/", static.LocalFile("../frontend/dist/", true)))
-	// router.Use(static.Serve("/tester", static.LocalFile("../frontend/public/", true)))
+var router *gin.Engine
+
+func InitApiHandler() *gin.Engine {
+     router = gin.Default()
+     initRoutes()
+     router.Run()
+
+     return router
+}
+
+func initRoutes(){
+	// Handle GET requests for all albums, calls getAllAlbums in handlers.albums.go
+	router.GET("/album/view/all", func(c *gin.Context) {
+		c.JSON(200, gin.H {
+		        "albums": getAllAlbums(),
+		})
+	})
+
+    // list all of a users files
+    router.GET("api/users", GetUsers)
+
+    // list single file info
+    router.GET("api/files/:file_id", GetSingleFile)
+
+	// Handle POST request to edit any attribute(s). UpdateFile. in handlers.go
+	router.PATCH("api/files/:file_id", UpdateFile)
 
 	// Set route for default landing page.
 	router.GET("/tester", func(c *gin.Context) {
@@ -34,8 +51,6 @@ func CreateApiHandler() *gin.Engine {
 			"message": "secure login",
 		})
 	})
-
-	return router
 }
 
 func middleWareHandler() gin.HandlerFunc {
