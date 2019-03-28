@@ -1,0 +1,21 @@
+﻿.Nav{
+    float: left;
+    width: 160px;
+    padding: 20px;
+    font-weight: bold;
+}
+
+.UL{
+    list-style-type: none;
+    margin: 0px;
+    padding-left: 0px;
+    font-size: 1.2em;
+}
+
+.Button{
+    text-decoration: none;
+    color: black;
+    border-radius: 10px;
+    
+    padding-right: 25px;
+}
