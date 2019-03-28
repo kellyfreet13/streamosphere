@@ -4,8 +4,6 @@ import (
 	"net/http"
 	"github.com/anthonyasanchez/streamosphere/backend/security"
 	"github.com/kellyfreet13/streamosphere/backend/api"
-//    "go.mongodb.org/mongo-driver/mongo"
-//    "context"
 )
 
 
