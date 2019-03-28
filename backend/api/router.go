@@ -16,21 +16,18 @@ func InitApiHandler() *gin.Engine {
 }
 
 func initRoutes(){
-	// Handle GET requests for all albums, calls getAllAlbums in handlers.albums.go
-	router.GET("/album/view/all", func(c *gin.Context) {
-		c.JSON(200, gin.H {
-		        "albums": getAllAlbums(),
-		})
-	})
 
-    // list all of a users files
+    // ------------------------- FILES -------------------------
+    router.GET("api/files/:file_id", GetSingleFile)
+    router.GET("api/users/:user_id/files", GetAllFiles)
+    router.GET("api/users/:user_id/files/:file_type", GetAllFilesByType)
+
+    // Hanlde PATCH to edit any file attribute(s) (except arrays at the moment)
+    router.PATCH("api/files/:file_id", UpdateFile)
+
+    // ------------------------- USERS -------------------------
     router.GET("api/users", GetUsers)
 
-    // list single file info
-    router.GET("api/files/:file_id", GetSingleFile)
-
-	// Handle POST request to edit any attribute(s). UpdateFile. in handlers.go
-	router.PATCH("api/files/:file_id", UpdateFile)
 
 	// Set route for default landing page.
 	router.GET("/tester", func(c *gin.Context) {
