@@ -1,0 +1,298 @@
+{
+	"files": [
+	{
+		"user_id": "kelly",
+		"ImageUrl": "",
+		"Type": "album",
+		"Size": "20MB",
+		"Content": {
+			"Title": "Channel Orange",
+			"Artist": "Frank Ocean",
+			"Genre": "Alternative R&B",
+			"Label": "Def Jam",
+			"ReleaseDate": "2012-06-10T00:00:0000.511Z",
+			"Length": "01:02:18",
+			"TrackCount": 4,
+			"Tracklist": [
+			{
+				"Number": 1,
+				"Title": "Start",
+				"Length": "00:00:45"
+			},
+			{
+				"Number": 2,
+				"Title": "Thinkin Bout You",
+				"Length": "00:03:20"
+			},
+			{
+				"Number": 3,
+				"Title": "Fertilizer",
+				"Length": "00:00:39"
+			},
+			{
+				"Number": 4,
+				"Title": "Sierra Leone",
+				"Length": "00:02:28"
+			}
+			]
+		}
+	},
+	{
+		"user_id": "kelly",
+		"ImageUrl": "",
+		"Type": "album",
+		"Size": "18MB",
+		"Content": {
+			"Title": "OK Computer",
+			"Artist": "Radio Head",
+			"Genre": "Alternative Rock",
+			"Label": "Capitol",
+			"ReleaseDate": "1997-06-16T00:00:0000.511Z",
+			"Length": "00:53:21",
+			"TrackCount": 7,
+			"Tracklist": [
+			{
+				"Number": 1,
+				"Title": "Airbag",
+				"Length": "00:04:44"
+			},
+			{
+				"Number": 2,
+				"Title": "Paranoid Android",
+				"Length": "00:06:23"
+			},
+			{
+				"Number": 3,
+				"Title": "Subterranean Homesick Alien",
+				"Length": "00:04:27"
+			},
+			{
+				"Number": 4,
+				"Title": "Exit Music (For a Film)",
+				"Length": "00:04:24"
+			},
+			{
+				"Number": 5,
+				"Title": "Let Down",
+				"Length": "00:04:59"
+			},
+			{
+				"Number": 6,
+				"Title": "Karma Police",
+				"Length": "00:04:21"
+			},
+			{
+				"Number": 7,
+				"Title": "Fitter Happier",
+				"Length": "00:01:57"
+			}
+			]
+		}
+	},
+	{
+		"user_id": "kelly",
+		"ImageUrl": "",
+		"Type": "album",
+		"Size": "16MB",
+		"Content": {
+			"Title": "Currents",
+			"Artist": "Tame Impala",
+			"Genre": "Psychedelic Pop",
+			"Label": "Universal",
+			"ReleaseDate": "2015-07-17T00:00:0000.511Z",
+			"Length": "00:51:06",
+			"TrackCount": 13,
+			"Tracklist": [
+			{
+				"Number": 1,
+				"Title": "Let It Happen",
+				"Length": "00:07:46"
+			},
+			{
+				"Number": 2,
+				"Title": "Nangs",
+				"Length": "00:01:47"
+			},
+			{
+				"Number": 3,
+				"Title": "The Moment",
+				"Length": "00:04:15"
+			},
+			{
+				"Number": 4,
+				"Title": "Yes I'm Changing",
+				"Length": "00:04:30"
+			},
+			{
+				"Number": 5,
+				"Title": "Eventually",
+				"Length": "00:05:19"
+			},
+			{
+				"Number": 6,
+				"Title": "Gossip",
+				"Length": "00:00:55"
+			},
+			{
+				"Number": 7,
+				"Title": "The Less I Know the Better",
+				"Length": "00:03:38"
+			},
+			{
+				"Number": 8,
+				"Title": "Past Life",
+				"Length": "00:03:47"
+			},
+			{
+				"Number": 9,
+				"Title": "Disciples",
+				"Length": "00:01:48"
+			},
+			{
+				"Number": 10,
+				"Title": "Cause I'm a Man",
+				"Length": "00:04:01"
+			},
+			{
+				"Number": 11,
+				"Title": "Reality in Motion",
+				"Length": "00:04:12"
+			},
+			{
+				"Number": 12,
+				"Title": "Love/Paranoia",
+				"Length": "00:03:06"
+			},
+			{
+				"Number": 13,
+				"Title": "New Person, Same Old Mistakes",
+				"Length": "00:06:02"
+			}
+			]
+		}
+	},
+	{
+		"user_id": "kelly",
+		"ImageUrl": "",
+		"Type": "song",
+		"Size": "1.5MB",
+		"Content": {
+			"Title": "Kill Every Snitch",
+			"Album": "Thugged Out Pissed Off",
+			"Artist": "Lil B",
+			"Genre": "Rap",
+			"Label": "Big B",
+			"ReleaseDate": "2015-23-30T00:00:0000.511Z",
+			"Length": "00:04:42"
+		}
+	},
+	{
+		"user_id": "kelly",
+		"ImageUrl": "",
+		"Type": "song",
+		"Size": "1.2MB",
+		"Content": {
+			"Title": "Stephen Hawking",
+			"Album": "Thugged Out Pissed Off",
+			"Artist": "Lil B",
+			"Genre": "Rap",
+			"Label": "Big B",
+			"ReleaseDate": "2015-12-30T00:00:0000.511Z",
+			"Length": "00:04:15"
+		}
+	},
+	{
+		"user_id": "kelly",
+		"ImageUrl": "",
+		"Type": "song",
+		"Size": "1.4MB",
+		"Content": {
+			"Title": "1612",
+			"Album": null,
+			"Artist": "Vulfpeck",
+			"Genre": "Pop",
+			"Label": "Big B",
+			"ReleaseDate": "2014-03-15T00:00:0000.511Z",
+			"Length": "00:03:31"
+		}
+	},
+	{
+		"user_id": "kelly",
+		"ImageUrl": "",
+		"Type": "song",
+		"Size": "1.22MB",
+		"Content": {
+			"Title": "Wait For the Moment",
+			"Album": null,
+			"Artist": "Vulfpeck",
+			"Genre": "Pop",
+			"Label": "Big B",
+			"ReleaseDate": "2014-03-15T00:00:0000.511Z",
+			"Length": "00:03:31"
+		}
+	},
+	{
+		"user_id": "kelly",
+		"ImageUrl": "",
+		"Type": "song",
+		"Size": "1.26MB",
+		"Content": {
+			"Title": "Moonlight Sonota",
+			"Album": null,
+			"Artist": "Ludwig van Beethoven",
+			"Genre": "Classical",
+			"PerformedBy": "Jeaque Rousseau",
+			"Label": null,
+			"ReleaseDate": "1801-00-00T00:00:0000.511Z",
+			"Length": "00:03:33"
+		}
+	},
+	{
+		"user_id": "kelly",
+		"ImageUrl": "",
+		"Type": "video",
+		"Size": "2.4GB",
+		"Content": {
+			"Title": "Tom Cruise Cucks the Kracken's Cutlery",
+			"Length": "02:33:20",
+			"Description": "The legendary Kracken fights back Tom Cruise's insatiable\n desire for below-the-sea cutlery",
+			"Genre": [
+			"Comedy",
+			"Romance"
+			],
+			"Director": "Kelly Freet",
+			"Writers": [
+			"Keaton Nishimi",
+			"Rosa Parks"
+			],
+			"Actors": [
+			"Nicolas Cage",
+			"John Williams"
+			],
+			"imdbRating": "9.7"
+		}
+	},
+	{
+		"user_id": "kelly",
+		"ImageUrl": "",
+		"Type": "video",
+		"Size": "1.1GB",
+		"Content": {
+			"Title": "Home Video 22a",
+			"Length": "00:33:10",
+			"Description": "Kelly jumping up and down for 30 minutes"
+		}
+	},
+	{
+		"user_id": "kelly",
+		"ImageUrl": "",
+		"Type": "video",
+		"Size": "1.5GB",
+		"Content": {
+			"Title": "Mongo DB Tutorial",
+			"Length": "00:48:43",
+			"Description": "Learn the fundamentals of this document based database"
+		}
+	}
+	]
+}
