@@ -1,0 +1,35 @@
+﻿div{
+    background-color: lightblue;
+}
+.login {
+    margin-left: auto;
+    margin-right: auto;
+}
+button {
+    float:right;
+}
+
+/*.imgSet2 {
+    background-image: url(../images/sphere.jpg), url(../images/csSphere.jpg), url(../images/signature1.png);
+    background-position: left, center, right;
+    background-repeat: no-repeat, no-repeat, no-repeat;
+    background-size: 100px, 100px, 100px;
+}*/
+/*.imgSet3 {
+    background-image: url(../images/signature1.png), url(../images/sphere.jpg), url(../images/csSphere.jpg);
+    background-position: left, center, right;
+    background-repeat: no-repeat, no-repeat, no-repeat;
+    background-size: 200px, 200px, 200px;
+}
+.imgSet4 {
+    background-image: url(../images/csSphere.jpg), url(../images/signature1.png), url(../images/sphere.jpg);
+    background-position: left, center, right;
+    background-repeat: no-repeat, no-repeat, no-repeat;
+    background-size: 200px, 200px, 200px;
+}
+.imgSet5 {
+    background-image: url(../images/sphere.jpg), url(../images/csSphere.jpg), url(../images/signature1.png);
+    background-position: left, center, right;
+    background-repeat: no-repeat, no-repeat, no-repeat;
+    background-size: 200px, 200px, 200px;
+}*/

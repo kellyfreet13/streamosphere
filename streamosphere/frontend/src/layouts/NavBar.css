@@ -1,0 +1,17 @@
+﻿nav {
+    float: left;
+    width: 160px;
+    padding: 20px;
+    font-weight: bold;
+}
+
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding-left: 0;
+    font-size: 1.2em;
+}
+
+nav a {
+    text-decoration: none;
+}
