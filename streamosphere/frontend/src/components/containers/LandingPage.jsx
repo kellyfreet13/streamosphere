@@ -8,8 +8,7 @@ import './LandingPage.css'
 
 const LandingPage = () => (
     <div>
-      <Button className="signInButton"
-              variant="light"><Link to={ROUTES.SIGN_IN}>Sign In</Link></Button>
+    <Link to={ROUTES.SIGN_IN}><Button className="signInButton" variant="light">Sign In</Button></Link>
       <h1 className="landingBanner" >Streamosphere</h1>
       <SignUpForm />
     </div>
