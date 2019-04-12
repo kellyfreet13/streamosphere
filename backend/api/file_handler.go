@@ -114,7 +114,9 @@ func UpdateFile(c *gin.Context) {
     c.BindJSON(&json_req)
 
     // filter by document id
-    filter := bson.M{ "id": c.Param("file_id")}
+    file_id := c.Param("file_id")
+    bson_id, _ := primitive.ObjectIDFromHex(file_id) // ==== LEFT OF HERE =====
+    filter := bson.M{"_id": bson_id}
 
     // create the update based on operation through switch
     // implement other operations later
@@ -237,7 +239,9 @@ func GetSingleFile(c *gin.Context) {
     client := GetMongoClient()
     file_coll := client.Database("streamosphere").Collection("files")
 
-    filter := bson.M{"id": c.Param("file_id")}
+    // create a bson id from request url
+    bson_id, _ := primitive.ObjectIDFromHex(c.Param("file_id"))
+    filter := bson.M{"_id": bson_id}
     result := file_coll.FindOne(context.Background(), filter)
 
     file_json := &File{}
