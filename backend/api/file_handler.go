@@ -51,18 +51,7 @@ type AlbumContent struct {
     ReleaseDate string      `bson:"ReleaseDate,omitempty"`
     Length      string      `bson:"Length,omitempty"`
     TrackCount  int         `bson:"TrackCount,omitempty"`
-    Tracklist   []Track     `bson:"Content.Tracklist,omitempty"`
-
-    // unique song
-    //Album       string      `bson:"Album,omitempty"`
-    //PerformedBy string      `bson:"PerformedBy,omitempty"`
-
-    // unique video
-    //Director    []string    `bson:"Director,omitempty"`
-    //Writers     []string    `bson:"Writers,omitempty"`
-    //Actors      []string    `bson:"Actors,omitempty"`
-    //imdbRating  string      `bson:"imdbRating,omitempty"`
-
+    Tracklist   []Track     `bson:"Tracklist,omitempty"`
 }
 
 // different from a song in that it's a track on an album
@@ -177,16 +166,6 @@ func GetAllFilesByType(c *gin.Context) {
     c.Header("Content-Type", "application/json")
     c.JSON(http.StatusOK, files)
 }
-
-//func GetAllAlbums(c *gin.Context) {
-//    client := GetMongoClient()
-//    file_coll := client.Database("streamosphere").Collection("files")
-//}
-
-//func GetAllVideos(c *gin.Context) {
-//    client := GetMongoClient()
-//    file_coll := client.Database("streamosphere").Collection("files")
-//}
 
 func GetAllFiles(c *gin.Context) {
     client := GetMongoClient()
