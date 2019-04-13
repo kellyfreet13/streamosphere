@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import '../../layouts/MainLayout.css';
 import sph from '../../images/sphere.jpg';
 import sph1 from '../../images/csSphere.jpg';
+import * as ROUTES from '../../routes.jsx';
 
 const HomePage = () => (
     <div>
