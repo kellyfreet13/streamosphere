@@ -7,7 +7,7 @@ import * as ROUTES from '../../routes.jsx';
 
 const HomePage = () => (
     <div>
-        <Link to="/login"><button>Login</button></Link> <br /> 
+        <Link to={ROUTES.SIGN_IN}><button>Login</button></Link> <br /> 
         <h1>Welcome to Streamosphere!</h1>
         <img src={sph} alt="a gray sphere" width="400" height="400" />
         <img src={sph1} alt="a sphere of binary digits" width="400" height="400" />
