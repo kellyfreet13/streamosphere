@@ -6,13 +6,8 @@ import (
     "log"
     "context"
     "net/http"
-//    "strings"
-//    "encoding/json"
-//    "bytes"
 
     "go.mongodb.org/mongo-driver/bson"
-//    "go.mongodb.org/mongo-driver/mongo"
-//    "github.com/mongodb/mongo-go-driver/mongo"
     "go.mongodb.org/mongo-driver/bson/primitive"
 
     "github.com/gin-gonic/gin"
@@ -135,13 +130,13 @@ func GetAllFilesByType(c *gin.Context) {
     file_type = file_type[0:len(file_type)-1]
     filter := bson.M{"user_id": c.Param("user_id"), "Type": file_type}
     cur, err := file_coll.Find(context.Background(), filter)
-    if err != nil { c.AbortWithError(400, err) }
+    if err != nil { c.AbortWithError(404, err) }
 
     var files[]*File
     defer cur.Close(context.Background())
     for cur.Next(context.Background()) {
         var file_json File
-        if err := cur.Decode(&file_json); err != nil { log.Fatal(err) }
+        if err := cur.Decode(&file_json); err != nil { c.AbortWithError(500, err) }
 
         result := file_coll.FindOne(context.Background(), bson.M{"_id": file_json.ID})
 
@@ -149,17 +144,19 @@ func GetAllFilesByType(c *gin.Context) {
             case "song":
                 var doc4song FileForSong
                 err = result.Decode(&doc4song)
+                err != nil { c.AbortWithError(500, err) }
                 file_json.Content = doc4song.SongContent
             case "album":
                 var doc4album FileForAlbum
                 err = result.Decode(&doc4album)
+                err != nil { c.AbortWithError(500, err) }
                 file_json.Content = doc4album.AlbumContent
             case "video":
                 var doc4video FileForVideo
-                err = result.Decode(&doc4video)
+                err = result.Decode(&doc4video);
+                err != nil { c.AbortWithError(500, err) }
                 file_json.Content = doc4video.VideoContent
         }
-        if err != nil { log.Fatal(err) }
         files = append(files, &file_json)
     }
 
@@ -172,16 +169,15 @@ func GetAllFiles(c *gin.Context) {
     file_coll := client.Database("streamosphere").Collection("files")
 
     cursor, err := file_coll.Find(context.Background(), bson.M{"user_id": c.Param("user_id")})
-    if err != nil { c.AbortWithError(400, err) }
+    if err != nil { c.AbortWithError(404, err) }
 
     // kind of hacky impl. go go
     var files []*File
     defer cursor.Close(context.Background())
     for cursor.Next(context.Background()) {
         var file_json File
-        if err := cursor.Decode(&file_json); err != nil {
-            log.Fatal(err)
-        }
+        if err := cursor.Decode(&file_json)
+         err != nil { c.AbortWithError(500) }
 
         // get the file type and conditionally decode
         filter := bson.M{"_id": file_json.ID}
@@ -190,19 +186,19 @@ func GetAllFiles(c *gin.Context) {
             case "album":
                 var doc4album FileForAlbum
                 err = result.Decode(&doc4album)
-                if err != nil { log.Fatal(err); }
+                if err != nil { c.AbortWithError(500) }
 
                 file_json.Content = doc4album.AlbumContent
             case "song":
                 var doc4song FileForSong
                 err = result.Decode(&doc4song)
-                if err != nil { log.Fatal(err); }
+                if err != nil { c.AbortWithError(500) }
 
                 file_json.Content = doc4song.SongContent
             case "video":
                 var doc4video FileForVideo
                 err = result.Decode(&doc4video)
-                if err != nil { log.Fatal(err); }
+                if err != nil { c.AbortWithError(500) }
 
                 file_json.Content = doc4video.VideoContent
         }
@@ -225,7 +221,7 @@ func GetSingleFile(c *gin.Context) {
 
     file_json := &File{}
     file_err := result.Decode(file_json)
-    if file_err != nil { log.Fatal(file_err); log.Fatal("[GetSingleFile] could not decode") }
+    if file_err != nil { c.AbortWithError(500) }
 
     c.Header("Content-Type", "application/json")
     c.JSON(http.StatusOK, file_json)
