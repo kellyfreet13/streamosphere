@@ -8,6 +8,7 @@ class App extends React.Component {
       return (
         <Router history={hashHistory}>
           <Route exact path='/' component={LandingPage} />
+          <Route path='/login' component={Login} />
           <Route path='/register' component={Register} />
           <Route path='/AccountHome' component={AccountHome} />
         </Router>
