@@ -3,25 +3,21 @@
 package api
 
 import (
-//    "fmt"
     "log"
     "context"
     "net/http"
-  //    "strings"
-  //    "encoding/json"
-  //    "bytes"
 
     "go.mongodb.org/mongo-driver/bson"
-//    "go.mongodb.org/mongo-driver/mongo"
+    "go.mongodb.org/mongo-driver/bson/primitive"
 
     "github.com/gin-gonic/gin"
 )
 
 type User struct {
-    ID          string  `bson:"id,omitempty"`
-    FirstName   string  `bson:"FirstName,omitempty"`
-    LastName    string  `bson:"LastName,omitempty"`
-    Email       string  `bson:"Email,omitempty"`
+    ID          primitive.ObjectID  `bson:"_id,omitempty" json:"id"`
+    FirstName   string              `bson:"FirstName,omitempty"`
+    LastName    string              `bson:"LastName,omitempty"`
+    Email       string              `bson:"Email,omitempty"`
 }
 
 // get all users
