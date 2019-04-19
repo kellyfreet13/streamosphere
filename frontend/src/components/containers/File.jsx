@@ -21,13 +21,9 @@ export default class File extends Component {
     }
 
     render() {
-        // for some reason this makes it work
-        let imgUrl = this.props.imageUrl;
-        let altUrl = 'url:'+imgUrl
         return (
             <div>
-                {/*<p>Filename: {this.state.filename}, Description: {this.state.description}</p>*/}
-                {/*<img src={imgUrl} alt={altUrl} />*/}
+                {/* a wrapper for the modal handler */}
                 <PreviewFile
                     imageUrl={this.props.imageUrl}
                     toggleMediaPlayerView={this.props.toggleMediaPlayerView}
