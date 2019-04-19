@@ -20,7 +20,7 @@ class ProgressBarExample extends React.Component {
 
     render() {
         return (
-            <div>
+            <div className="progress-bar">
 
                 <h2> Storage </h2>
                 <ProgressBar percentage={this.state.percentage} />

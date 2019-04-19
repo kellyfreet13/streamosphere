@@ -1,0 +1,11 @@
+.context-button {
+    min-width: 90px;
+    /*border-radius: 0;*/
+    margin: 2px 0;
+}
+
+.context-menu-container {
+    background-color: #fff;
+    padding: 10px;
+    text-align: center;
+}

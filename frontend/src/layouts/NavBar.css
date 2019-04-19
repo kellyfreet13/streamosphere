@@ -1,8 +1,6 @@
 ﻿nav {
-    float: left;
-    width: 160px;
-    padding: 20px;
     font-weight: bold;
+    display: inline-block;
 }
 
 nav ul {
@@ -14,4 +12,12 @@ nav ul {
 
 nav a {
     text-decoration: none;
+}
+
+#navigation-container {
+    width: 100%;
+    height: auto;
+    margin: 0 auto;
+    position: relative;
+    text-align: center;
 }

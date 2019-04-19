@@ -5,7 +5,7 @@ import { withFirebase } from '../firebase';
 import * as ROUTES from '../../routes.jsx';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
-import './LandingPage.css'
+import '../../layouts/LandingPage.css'
 
 const SignInPage = () => (
     <div>
@@ -35,7 +35,7 @@ class SignInFormBase extends Component {
             .doSignInWithEmailAndPassword(email, password)
             .then(() => {
                 this.setState({ ...INITIAL_STATE });
-                this.props.history.push(ROUTES.HOME);
+                // this.props.history.push(ROUTES.HOME);
             })
             .catch(error => {
                 this.setState({ error });
@@ -90,7 +90,7 @@ class SignInFormBase extends Component {
     }
 }
 
-const SignInForm = withRouter(withFirebase(SignInFormBase));
+const SignInForm = withFirebase(SignInFormBase);
 
 export default SignInPage;
 

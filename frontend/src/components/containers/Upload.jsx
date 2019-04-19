@@ -2,6 +2,9 @@
 import UploadFile from './UploadFile.jsx';
 import { Link } from 'react-router-dom';
 import Modal from 'react-awesome-modal';
+import Button from 'react-bootstrap/Button';
+import '../../layouts/ButtonStyles.css';
+
 export default class Upload extends Component {
     constructor(props) {
         super(props);
@@ -26,16 +29,10 @@ export default class Upload extends Component {
     }
     
     render() {
-        const styles = {
-            button: {
-                borderRadius: '10px',
-                backgroundColor: 'white',
-                marginRight: '190px'
-            }
-        }
+
         return (
             <div>
-                <button onClick={() => this.openModal()} style={styles.button}>Upload</button>
+                <Button className="file-button" onClick={() => this.openModal()}>Upload</Button>
                 <Modal visible={this.state.visible} width="1000" height="400" effect="fadeInUp" onClickAway={() => this.closeModal()}>
                     <UploadFile />
                 </Modal>

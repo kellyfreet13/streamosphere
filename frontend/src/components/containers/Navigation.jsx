@@ -1,4 +1,5 @@
-import {Link} from "react-router";
+import React from 'react';
+import {Link} from "react-router-dom";
 import * as ROUTES from "../../routes.jsx";
 import SignOutButton from './SignOut.jsx';
 

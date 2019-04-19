@@ -1,24 +1,22 @@
-﻿import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+﻿// libraries
+import React, { Component } from 'react';
 import { ContextMenu, MenuItem, ContextMenuTrigger } from "react-contextmenu";
-//import 'react-contexify/dist/ReactContexify.min.css';
-import sig from '../../images/accImage.jpg';
-import Modal from 'react-awesome-modal';
 import ReactPlayer from 'react-player';
-import { accHome } from '../../layouts/AccountHome.css';
-import { Player } from 'video-react';
-import EditDescription from './EditDescription.jsx';
+import { Button, ButtonGroup } from 'react-bootstrap';
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+
+// custom components
 import Rename from './RenameFile.jsx';
 import NavBar from './NavBar.jsx';
-import { Button, ButtonGroup } from 'react-bootstrap';
-import ProgressBarExample from './ProgressBarTemp.jsx';
-import SearchBarS from './SearchBar.jsx';
-import Move from './MoveFile.jsx';
+import GridView from './GridView.jsx';
 import File from './File.jsx';
-//import music from '../media/Imagine Dragons - Radioactive (AUDIO).mp3';
-//import video from '../media/video.mp4';
+import EditDescription from './EditDescription.jsx';
 
-export class AccountHome extends Component {
+// styling
+import '../../layouts/AccountHome.css';
+
+
+export default class AccountHome extends Component {
     
     constructor(props) {
         super(props);
@@ -126,87 +124,62 @@ export class AccountHome extends Component {
         });
     }
     render() {
-        let fileList = this.state.files;    
-        const styles = {
-            body: {
-                backgroundColor: 'lightgreen',
-            },
-            contextMenuTrigger: {
-                backgroundColor: 'white',
-            },
-            link: {
-                float: 'right',
-            },
-            img: {
-                float: 'right'
-            },
-            nav: {
-                float: 'left',
-                width: '160px',
-                padding: '20px',
-                fontWeight: 'bold',
-            },
-            ul: {
-                listStyleType: 'none',
-                margin: '0px',
-                paddingLeft: '0px',
-                fontSize: ' 1.2em',
-            },
-
-            a: {
-                textDecoration: 'none',
-                backgroundColor: 'white',
-            },
-            h1: {
-                textAlign: 'left'
-            }
-           
-        };
+        let fileList = this.state.files;
 
         // temporary file names, will be read in from json
         let tempFileName1 = "file 1";
         let tempDescr1 = "file 1 description";
 
-        return (                        
+        console.log('AccountHome rendered');
+        // let music =  '../media/test_audio.mp3';
+        // let video = '../media/test_video.mp4';
+
+        return (
             <div>
-                <NavBar newFolder={this.addNewFolder} />
-                <Link to="/" style={styles.link}><button>Logout</button></Link> <br />
-                <img src={sig} alt="super smash bros character" width="50" height="50" style={styles.img} />
-                <h1 style={styles.h1}> Account Home Page</h1>                    
-                <ProgressBarExample> </ProgressBarExample>
-                <br />
+                <div id="streamosphere-banner">Streamosphere</div>
+                <div id="page-container">
+                    <div id="left-content">
+                        <NavBar newFolder={this.addNewFolder} />
+                    </div>
+                    <div id="right-content">
+                        {/*<Link to="/" style={styles.link}><Button>Logout</Button></Link> <br />*/}
 
-                <ContextMenuTrigger id="2">
-                    // left off here
-                    <File filename="file1"
-                        description="description1"
-                        onContextMenu={this.handleChildClick}
-                        datafileName={tempFileName1}
-                        dataattr2={tempDescr1} />
+                        <GridView />
 
-                    {fileList.map(file =>
-                        <div className="well" onContextMenu={this.handleChildClick} data-fileName={file.fileName} data-attr2={file.description} >
-                            {file.fileName} <br />
-                            {file.description}
-                        </div>)
-                    }
-                    Imagine Dragons - Radioactive <audio id="audio" src={music}
-                        preload="auto" controls muted loop autoplay>
-                    </audio> <br />
-                    <video width="320" height="240" controls>
-                        <source src={video} type="audio/mp4" />
-                    </video>
-                    <ReactPlayer url='https://www.youtube.com/watch?v=ysz5S6PUM-U' playing loop controls />
-                </ContextMenuTrigger>
+                        {/* ----------------------------------------------*/}
+                        {/* keeping this code to reference TODO: remove and integrate */}
+                        {/*<ContextMenuTrigger id="2">*/}
+                        {/*    <File filename="file1"*/}
+                        {/*          description="description1"*/}
+                        {/*          onContextMenu={this.handleChildClick}*/}
+                        {/*          datafileName={tempFileName1}*/}
+                        {/*          dataattr2={tempDescr1} />*/}
 
-                <ContextMenu id="2">
-                    <ButtonGroup vertical>
-                        <Button onClick={this.removeFile}>Cut</Button>
-                        <Button onClick={this.addCopy}> Copy</Button>
-                        <EditDescription editDescription={this.editFileDescript} />
-                        <Rename getFileName={this.getFileName} />
-                    </ButtonGroup>
-                </ContextMenu>             
+                        {/*    {fileList.map(file =>*/}
+                        {/*        <div className="well" onContextMenu={this.handleChildClick} data-fileName={file.fileName} data-attr2={file.description} >*/}
+                        {/*            {file.fileName} <br />*/}
+                        {/*            {file.description}*/}
+                        {/*        </div>)*/}
+                        {/*    }*/}
+                        {/*    Imagine Dragons - Radioactive <audio id="audio" src={music}*/}
+                        {/*                                         preload="auto" controls muted loop autoPlay>*/}
+                        {/*</audio> <br />*/}
+                        {/*    <video width="320" height="240" controls>*/}
+                        {/*        <source src={video} type="audio/mp4" />*/}
+                        {/*    </video>*/}
+                        {/*    <ReactPlayer url='https://www.youtube.com/watch?v=ysz5S6PUM-U' playing loop controls />*/}
+                        {/*</ContextMenuTrigger>*/}
+
+                        {/*<ContextMenu id="2">*/}
+                        {/*    <ButtonGroup vertical>*/}
+                        {/*        <Button onClick={this.removeFile}>Cut</Button>*/}
+                        {/*        <Button onClick={this.addCopy}> Copy</Button>*/}
+                        {/*        <EditDescription editDescription={this.editFileDescript} />*/}
+                        {/*        <Rename getFileName={this.getFileName} />*/}
+                        {/*    </ButtonGroup>*/}
+                        {/*</ContextMenu>*/}
+                    </div>
+                </div>
             </div>
         );
     }
@@ -223,49 +196,5 @@ export class AccountHome extends Component {
     }
     handleClickIndex(index, event) {
         eval(this[event.target.name]).bind(this)(index, event)
-    }
-}
-
-export default class Subscribe extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            visible: false
-        };
-        this.openModal = this.openModal.bind(this);
-        this.closeModal = this.closeModal.bind(this);
-    }
-
-    openModal() {
-        this.setState({
-            visible: true
-        });
-    }
-
-    closeModal() {
-        alert("Your subscription is now confirmed.")
-        this.setState({
-            visible: false
-        });
-    }
-
-    render() {
-        const styles = {
-            input: {
-                float: 'right',
-            }
-        }
-        return (
-            <div>
-                <input type="button" value="Subscribe" onClick={() => this.openModal()} style={styles.input} />
-                <Modal visible={this.state.visible} width="400" height="300" effect="fadeInUp" onClickAway={() => this.closeModal()}>
-                    <div>
-                        <h1>Confirm subscription</h1>
-                        <p>Confirmation data</p>
-                        <a href="javascript:void(0);" onClick={() => this.closeModal()}>Confirm</a>
-                    </div>
-                </Modal>
-            </div>
-        );
     }
 }

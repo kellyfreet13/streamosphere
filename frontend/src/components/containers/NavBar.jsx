@@ -3,6 +3,7 @@ import Folder from './Folder.jsx';
 import Upload from './Upload.jsx';
 import Download from './Download.jsx';
 import '../../layouts/NavBar.css';
+
 export default class NavBar extends Component {
     constructor(props) {
         super(props);
@@ -13,13 +14,15 @@ export default class NavBar extends Component {
     }
     render() {
         return (
-            <nav className="Nav">
-                <ul className="UL">
-                    <li className="Button"> <Folder addFolderToFileList={this.addToList}> </Folder> </li>
-                    <li className="Button"> <Upload> </Upload></li>
-                    <li className="Button"> <Download> </Download></li>
-                </ul>
-            </nav>
+            <div id="navigation-container">
+                <nav>
+                    <ul>
+                        <li> <Folder addFolderToFileList={this.addToList}> </Folder> </li>
+                        <li> <Upload> </Upload></li>
+                        <li> <Download> </Download></li>
+                    </ul>
+                </nav>
+            </div>
         );
     }
 

@@ -1,13 +1,8 @@
-﻿div{
-    background-color: lightblue;
-}
-.login {
+﻿.login {
     margin-left: auto;
     margin-right: auto;
 }
-button {
-    float:right;
-}
+
 
 /*.imgSet2 {
     background-image: url(../images/sphere.jpg), url(../images/csSphere.jpg), url(../images/signature1.png);

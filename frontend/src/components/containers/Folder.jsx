@@ -1,6 +1,7 @@
 ﻿import React from 'react';
 //import Modal from 'react-awesome-modal';
 import { Modal, Button } from 'react-bootstrap';
+import '../../layouts/ButtonStyles.css';
 
 export default class Folder extends React.Component {
     constructor(props) {
@@ -43,16 +44,9 @@ export default class Folder extends React.Component {
         });
     }
     render() {
-        const styles = {
-            button: {
-                borderRadius: '10px',
-                backgroundColor: 'white',
-                marginRight: '210px'
-            }
-        }
         return (
             <div>
-                <button onClick={() => this.openModal()} style={styles.button}>New</button>
+                <Button className="file-button" onClick={() => this.openModal()}>New</Button>
 
                 <Modal show={this.state.visible} onHide={this.closeModal}>
                     <Modal.Header closeButton>

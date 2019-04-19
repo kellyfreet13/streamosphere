@@ -1,14 +1,15 @@
 import React from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
-import { Link, withRouter } from 'react-router';
+import { Link, withRouter } from 'react-router-dom';
 import * as ROUTES from '../../routes.jsx';
 import { withFirebase } from '../firebase';
-import './LandingPage.css'
+import SignIn from './SignIn.jsx';
+import '../../layouts/LandingPage.css'
 
 const LandingPage = () => (
     <div>
-    <Button className="signInButton" variant="light"><Link to={ROUTES.SIGN_IN}>Sign In</Link></Button>
+    <Button className="signInButton" variant="light"><Link to={ROUTES.SIGN_IN} component={SignIn}>Sign In</Link></Button>
       <h1 className="landingBanner" >Streamosphere</h1>
       <SignUpForm />
     </div>
@@ -38,7 +39,7 @@ class SignUpFormBase extends React.Component {
             .doCreateUserWithEmailAndPassword(email, password)
             .then(authUser => {
               this.setState({ ...INITIAL_STATE });
-              history.push(ROUTES.HOME);
+              // history.push(ROUTES.HOME);
             })
             .catch(error => {
               this.setState({ error });
@@ -103,7 +104,7 @@ const SignUpLink = () => (
     </p>
 );
 
-const SignUpForm = withRouter(withFirebase(SignUpFormBase));
+const SignUpForm = SignUpFormBase;
 
 
 export default LandingPage;
