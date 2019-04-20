@@ -17,8 +17,9 @@
 
 .Icon {
     opacity: 0.3;
-    height: 64px;
-    width: 64px;
+    margin: 5px;
+    /*height: 64px;*/
+    /*width: 64px;*/
 }
 
 .FileInput {

@@ -1,7 +1,8 @@
 ﻿import React, { Component } from 'react';
-import Dropzone from './DropZoneBox.jsx';
-//import "./Upload.css";
+import Dropzone from './DropZone.jsx';
+import "../../layouts/UploadFile.css";
 import Progress from './Progress.jsx';
+import { Button } from 'react-bootstrap';
 
 class UploadFile extends Component {
     constructor(props) {
@@ -73,7 +74,10 @@ class UploadFile extends Component {
             const formData = new FormData();
             formData.append("file", file, file.name);
 
-            req.open("POST", "http://localhost:8000/upload");
+            // eventually user ID will be passed down, get all files for user
+            let userId = '5c9acddba0f0b4e94109c632'
+            let uploadFileUrl = 'http://streamosphere.net:8080/api/users/'+userId+'/files'
+            req.open("POST", uploadFileUrl);
             req.send(formData);
         });
     }
@@ -101,22 +105,23 @@ class UploadFile extends Component {
     renderActions() {
         if (this.state.successfullUploaded) {
             return (
-                <button
+                <Button
                     onClick={() =>
                         this.setState({ files: [], successfullUploaded: false })
                     }
                 >
                     Clear
-        </button>
+        </Button>
             );
         } else {
             return (
-                <button
+                <Button
                     disabled={this.state.files.length < 0 || this.state.uploading}
                     onClick={this.uploadFiles}
+                    className={"UploadCancelButton"}
                 >
                     Upload
-        </button>
+        </Button>
             );
         }
     }

@@ -1,6 +1,6 @@
 ﻿import React, { Component } from 'react';
 import Folder from './Folder.jsx';
-import Upload from './Upload.jsx';
+import UploadModalImpl from './UploadModalImpl.jsx';
 import Download from './Download.jsx';
 import '../../layouts/FileControlButtons.css';
 
@@ -18,7 +18,7 @@ export default class FileControlButtons extends Component {
                 <nav>
                     <ul>
                         <li> <Folder addFolderToFileList={this.addToList}> </Folder> </li>
-                        <li> <Upload> </Upload></li>
+                        <li> <UploadModalImpl> </UploadModalImpl></li>
                         <li> <Download> </Download></li>
                     </ul>
                 </nav>

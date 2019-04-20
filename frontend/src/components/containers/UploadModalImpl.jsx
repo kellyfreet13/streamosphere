@@ -5,7 +5,7 @@ import Modal from 'react-awesome-modal';
 import Button from 'react-bootstrap/Button';
 import '../../layouts/ButtonStyles.css';
 
-export default class Upload extends Component {
+export default class UploadModalImpl extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -33,7 +33,7 @@ export default class Upload extends Component {
         return (
             <div>
                 <Button className="file-button" onClick={() => this.openModal()}>Upload</Button>
-                <Modal visible={this.state.visible} width="1000" height="400" effect="fadeInUp" onClickAway={() => this.closeModal()}>
+                <Modal visible={this.state.visible} effect="fadeInUp" width="1000" height="300" onClickAway={() => this.closeModal()}>
                     <UploadFile />
                 </Modal>
             </div>

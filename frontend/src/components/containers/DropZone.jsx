@@ -1,7 +1,8 @@
 ﻿import React, { Component } from "react";
 import "../../layouts/Dropzone.css";
+import UploadIcon from '../../images/upload-to-cloud-26px.png';
 
-class DropZoneBox extends Component {
+class DropZone extends Component {
     constructor(props) {
         super(props);
         this.state = { hightlight: false };
@@ -77,12 +78,12 @@ class DropZoneBox extends Component {
                 <img
                     alt="upload"
                     className="Icon"
-                    src="baseline-cloud_upload-24px.svg"
+                    src={UploadIcon}
                 />
-                <span>Upload Files</span>
+                <span>Select Files to Upload</span>
             </div>
         );
     }
 }
 
-export default DropZoneBox;
+export default DropZone;
