@@ -27,7 +27,9 @@ func initRoutes(){
         api.GET("/users/:UserID/files", GetAllFiles)
         api.GET("/users/:UserID/files/:FileType", GetAllFilesByType)
 
-        // Hanlde PATCH to edit any file attribute(s) (except arrays at the moment)
+        api.POST("/users/:UserID/files", UploadFile)
+
+        // Handle PATCH to edit any file attribute(s) (except arrays at the moment)
         api.PATCH("/files/:FileID", UpdateFile)
 
         // ------------------------- USERS -------------------------

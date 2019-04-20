@@ -227,3 +227,12 @@ func GetSingleFile(c *gin.Context) {
     c.JSON(http.StatusOK, file_json)
 }
 
+func UploadFile(c *gin.Context) {
+    client := GetMongoClient()
+    file_coll := client.Database("streamosphere").Collection("files")
+
+    // create a bson id from request url
+    bson_id, _ = primitive.ObjectIdFromHex(c.Param("UserID"))
+    file_type := c.GetHeader("Content-Type")
+}
+
