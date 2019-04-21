@@ -38,7 +38,8 @@ export default class AccountHome extends Component {
             clickedFile: {
                 fileName: '',
                 description: ''
-            }
+            },
+            resourceToViewUrl: ''
         };
 
         this.addCopy = this.addCopy.bind(this);
@@ -53,6 +54,7 @@ export default class AccountHome extends Component {
 
         // toggle whether to display files or library view
         this.toggleMediaPlayerView = this.toggleMediaPlayerView.bind(this);
+        this.setResourceToViewUrl = this.setResourceToViewUrl.bind(this);
     }
     editFileDescript = (description) => {
         let curList = this.state.files;
@@ -135,17 +137,12 @@ export default class AccountHome extends Component {
         this.setState({ showMediaPlayer: !cur });
     }
 
+    setResourceToViewUrl(url) {
+        console.log("[AccountHome.setResourceToView] resource url: "+ url);
+        this.setState({ resourceToViewUrl: url })
+    }
+
     render() {
-        let fileList = this.state.files;
-
-        // temporary file names, will be read in from json
-        let tempFileName1 = "file 1";
-        let tempDescr1 = "file 1 description";
-
-        console.log('AccountHome rendered');
-        // let music =  '../media/test_audio.mp3';
-        // let video = '../media/test_video.mp4';
-
         return (
             <div>
                 <div id="streamosphere-banner">Streamosphere</div>
@@ -158,8 +155,16 @@ export default class AccountHome extends Component {
 
                         {/* conditionally render account home or media viewer.*/}
                         {/* this callback is going to get passed waaayy down. */}
-                        {!this.state.showMediaPlayer && <GridView toggleMediaPlayerView={this.toggleMediaPlayerView}/>}
-                        {this.state.showMediaPlayer && <MediaPlayerView toggleMediaPlayerView={this.toggleMediaPlayerView}/>}
+                        {!this.state.showMediaPlayer &&
+                            <GridView
+                                toggleMediaPlayerView={this.toggleMediaPlayerView}
+                                setResourceToViewUrl={this.setResourceToViewUrl}
+                            />}
+                        {this.state.showMediaPlayer &&
+                            <MediaPlayerView
+                                toggleMediaPlayerView={this.toggleMediaPlayerView}
+                                resourceToViewUrl={this.state.resourceToViewUrl}
+                            />}
                     </div>
                 </div>
             </div>

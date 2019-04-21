@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import GridRow from './GridRow.jsx';
+import * as consts from '../../Constants.js';
 import '../../layouts/GridStyles.css';
 
 export default class Grid extends Component {
@@ -17,7 +18,7 @@ export default class Grid extends Component {
     componentDidMount() {
         // eventually user ID will be passed down, get all files for user
         let userId = '5c9acddba0f0b4e94109c632'
-        let allFilesUrl = 'http://streamosphere.net:8080/api/users/'+userId+'/files'
+        let allFilesUrl = consts.API_URL + '/users/'+userId+'/files';
         let that = this;
 
         fetch(allFilesUrl)
@@ -35,7 +36,7 @@ export default class Grid extends Component {
     }
 
     getUrlRowSize(i, len) {
-        let cols = len - i
+        let cols = len - i;
 
         // we're on the last row
         if (i > len - 4) {
@@ -57,7 +58,7 @@ export default class Grid extends Component {
         let rowItems = [];
         console.log('[GridView.render]: num rows '+numRows);
 
-        // TODO: implement constructor so that this if is unecessary
+        // TODO: implement constructor so that this if is unnecessary
         if (locJson.length > 0) {
             for (let i = 0; i < numFiles; i += numCols){
                 console.log('row start index i: '+i);
@@ -67,15 +68,17 @@ export default class Grid extends Component {
                 for (let j = i; j < rowIndexMax; j++){
                     console.log('j: '+j);
                     imageUrlsRow.push(locJson[j].ImageUrl)
-                    resourceUrlsRow.push(locJson[i].ResourceUrl)
+                    resourceUrlsRow.push(locJson[j].ResourceUrl)
                 }
                 console.log('[GridView.render]: image url row \n\t'+imageUrlsRow);
+                console.log('[GridView.render]: resource url row'+resourceUrlsRow);
                 rowItems.push(
                     <GridRow
                         imageUrlsRow={imageUrlsRow}
                         resourceUrlsRow={resourceUrlsRow}
                         rowIndex={i}
                         toggleMediaPlayerView={this.props.toggleMediaPlayerView}
+                        setResourceToViewUrl={this.props.setResourceToViewUrl}
                     />)
             }
         }
