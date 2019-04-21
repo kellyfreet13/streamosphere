@@ -2,7 +2,7 @@ package main
 
 import (
 	"net/http"
-	"github.com/anthonyasanchez/streamosphere/backend/security"
+	"github.com/kellyfreet13/streamosphere/backend/security"
 	"github.com/kellyfreet13/streamosphere/backend/api"
 )
 
