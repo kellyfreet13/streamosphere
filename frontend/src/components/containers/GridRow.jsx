@@ -10,6 +10,7 @@ export default class GridRow extends Component {
             colItems.push(
                 <GridCol
                     imageUrl={this.props.imageUrlsRow[i]}
+                    resourceUrl={this.props.resourceUrlsRow[i]}
                     rowIndex={this.props.rowIndex}
                     colIndex={i}
                     toggleMediaPlayerView={this.props.toggleMediaPlayerView}

@@ -22,9 +22,8 @@ export default class PreviewFile extends React.Component {
         return (
             <MDBContainer>
                 <div onClick={this.toggle}>
-                    <img src={this.props.imageUrl} alt={this.props.imageUrl} />
+                    <img src={this.props.imageUrl} alt={this.props.resourceUrl} />
                 </div>
-
 
                 <MDBModal isOpen={this.state.modal} toggle={this.toggle} backdrop={true}>
                     <MDBModalHeader toggle={this.toggle}>Title</MDBModalHeader>

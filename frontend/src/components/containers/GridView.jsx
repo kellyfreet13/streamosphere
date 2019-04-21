@@ -62,15 +62,18 @@ export default class Grid extends Component {
             for (let i = 0; i < numFiles; i += numCols){
                 console.log('row start index i: '+i);
                 let imageUrlsRow = [];
+                let resourceUrlsRow = [];
                 let rowIndexMax = this.getUrlRowSize(i, numFiles)+i;
                 for (let j = i; j < rowIndexMax; j++){
                     console.log('j: '+j);
                     imageUrlsRow.push(locJson[j].ImageUrl)
+                    resourceUrlsRow.push(locJson[i].ResourceUrl)
                 }
                 console.log('[GridView.render]: image url row \n\t'+imageUrlsRow);
                 rowItems.push(
                     <GridRow
                         imageUrlsRow={imageUrlsRow}
+                        resourceUrlsRow={resourceUrlsRow}
                         rowIndex={i}
                         toggleMediaPlayerView={this.props.toggleMediaPlayerView}
                     />)

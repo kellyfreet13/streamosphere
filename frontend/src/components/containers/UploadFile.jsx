@@ -72,7 +72,7 @@ class UploadFile extends Component {
             });
 
             const formData = new FormData();
-            formData.append("file", file, file.name);
+            formData.append("file", file);
 
             // eventually user ID will be passed down, get all files for user
             let userId = '5c9acddba0f0b4e94109c632'
