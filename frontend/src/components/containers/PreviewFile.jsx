@@ -14,7 +14,6 @@ export default class PreviewFile extends React.Component {
         this.getImageComponent = this.getImageComponent.bind(this);
     }
 
-
     toggle = () => {
         this.setState({
             modal: !this.state.modal
@@ -22,8 +21,8 @@ export default class PreviewFile extends React.Component {
     }
 
     handleResourceView() {
-        this.props.toggleMediaPlayerView();
         this.props.setResourceToViewUrl(this.props.resourceUrl);
+        this.props.toggleMediaPlayerView();
     }
 
     getImageComponent(){
