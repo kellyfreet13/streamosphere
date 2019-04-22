@@ -72,11 +72,15 @@ export default class Grid extends Component {
                 }
                 console.log('[GridView.render]: image url row \n\t'+imageUrlsRow);
                 console.log('[GridView.render]: resource url row'+resourceUrlsRow);
+
+                let numCols = rowIndexMax-i
+
                 rowItems.push(
                     <GridRow
                         imageUrlsRow={imageUrlsRow}
                         resourceUrlsRow={resourceUrlsRow}
                         rowIndex={i}
+                        numCols={numCols}
                         toggleMediaPlayerView={this.props.toggleMediaPlayerView}
                         setResourceToViewUrl={this.props.setResourceToViewUrl}
                     />)
