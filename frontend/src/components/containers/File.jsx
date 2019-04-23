@@ -26,7 +26,9 @@ export default class File extends Component {
                 {/* a wrapper for the modal handler */}
                 <PreviewFile
                     imageUrl={this.props.imageUrl}
+                    resourceUrl={this.props.resourceUrl}
                     toggleMediaPlayerView={this.props.toggleMediaPlayerView}
+                    setResourceToViewUrl={this.props.setResourceToViewUrl}
                 />
             </div>
         );

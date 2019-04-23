@@ -3,23 +3,38 @@
 package api
 
 import (
+    // built ins
     "context"
     "net/http"
+    "log"
+    "io"
+    "bytes"
+    "strings"
+    "strconv"
 
+    // mongo db
     "go.mongodb.org/mongo-driver/bson"
     "go.mongodb.org/mongo-driver/bson/primitive"
 
+    // gin for routing
     "github.com/gin-gonic/gin"
+
+    // aws interfacing
+    "github.com/aws/aws-sdk-go/aws"
+    "github.com/aws/aws-sdk-go/aws/awsutil"
+    "github.com/aws/aws-sdk-go/service/s3"
+    "github.com/aws/aws-sdk-go/aws/session"
 )
 
 // since Content can have dynamic json, we'll use a map
 type File struct {
-    ID       primitive.ObjectID `bson:"_id,omitempty" json:"id"`
-    UserID   string             `bson:"UserID,omitempty"`
-    ImageUrl string             `bson:"ImageUrl,omitempty"`
-    Type     string             `bson:"Type,omitempty"`
-    Size     string             `bson:"Size,omitempty"`
-    Content  interface{}        `bson:"Content,omitempty"`
+    ID              primitive.ObjectID `bson:"_id,omitempty" json:"id"`
+    UserID          string             `bson:"UserID,omitempty"`
+    ImageUrl        string             `bson:"ImageUrl,omitempty"`
+    ResourceUrl     string             `bson:"ResourceUrl,omitempty"`
+    Type            string             `bson:"Type,omitempty"`
+    Size            string             `bson:"Size,omitempty"`
+    Content         interface{}        `bson:"Content,omitempty"`
 }
 
 type FileForAlbum struct {
@@ -205,7 +220,6 @@ func GetAllFiles(c *gin.Context) {
 
         files = append(files, &file_json)
     }
-
     c.Header("Content-Type", "application/json")
     c.JSON(http.StatusOK, files)
 }
@@ -228,11 +242,74 @@ func GetSingleFile(c *gin.Context) {
 }
 
 func UploadFile(c *gin.Context) {
+    // add the file info to the db
     client := GetMongoClient()
     file_coll := client.Database("streamosphere").Collection("files")
 
-    // create a bson id from request url
-    bson_id, _ = primitive.ObjectIdFromHex(c.Param("UserID"))
-    file_type := c.GetHeader("Content-Type")
-}
+    // securely create a session, you can't see the secrets. github ready baby
+    // loads from aws credentials and config file
+    sess := session.Must(session.NewSessionWithOptions(session.Options{
+        SharedConfigState: session.SharedConfigEnable,
+    }))
+    s3_cli := s3.New(sess)
 
+    // get the form data from the POST request
+    file, header, _ := c.Request.FormFile("file")
+    defer file.Close()
+
+    file_name := header.Filename
+    size := header.Size
+
+    // create a buffer to copy the file into
+    buf := bytes.NewBuffer(nil)
+    if _, err := io.Copy(buf, file); err != nil { log.Println(err) }
+
+    // NewReader(b []byte) *Reader
+    fileBytes := bytes.NewReader(buf.Bytes())
+    fileType := http.DetectContentType(buf.Bytes())
+
+    // put into the users folder by id
+    user_id_folder := c.Param("UserID")
+    path := "/" + user_id_folder + "/" + file_name
+
+    // create params to put into s3. give public read access
+    params := &s3.PutObjectInput{
+        Bucket: aws.String("ec2-54-215-161-219.media"),
+        Key: aws.String(path),
+        Body: fileBytes,
+        ContentLength: aws.Int64(size),
+        ContentType: aws.String(fileType),
+        ACL: aws.String("public-read"),
+    }
+
+    // put the file into s3!
+    resp, err := s3_cli.PutObject(params)
+    if err != nil { log.Fatal(err) }
+
+    // finally, update the db to contain this file
+    // get the user id and get the file type
+
+    // just creating the freakin url
+    user_id := c.Param("UserID")
+    dirty := "https:/"
+    s3_bucket_url := dirty + "/s3-us-west-1.amazonaws.com/ec2-54-215-161-219.media/"
+    s3_file_conv := strings.Replace(file_name, " ", "+", -1)
+    resource_url := s3_bucket_url + user_id + "/" + s3_file_conv
+
+    fn_split := strings.Split(file_name, ".")  // eventually map this to video, music
+    file_type := fn_split[len(fn_split)-1]
+    file_size := strconv.FormatInt(size, 10)
+    file_struct := File{
+        UserID: user_id,
+        ResourceUrl: resource_url,
+        Type: file_type,
+        Size: file_size,
+    }
+
+    // insert into mongo
+    _, err = file_coll.InsertOne(context.TODO(), file_struct)
+    if err != nil { log.Println(err) }
+
+    // print reponse e-tag (just to see non-failure)
+    log.Printf("response %s", awsutil.StringValue(resp))
+}
