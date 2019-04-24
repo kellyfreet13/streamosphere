@@ -8,10 +8,11 @@ export default class PreviewFile extends React.Component {
 
         this.state = {
             modal: false
-        }
+        };
 
         this.handleResourceView = this.handleResourceView.bind(this);
         this.getImageComponent = this.getImageComponent.bind(this);
+        this.urlToFileName = this.urlToFileName.bind(this);
     }
 
     toggle = () => {
@@ -35,7 +36,13 @@ export default class PreviewFile extends React.Component {
         return (<img src={this.props.imageUrl} alt={this.props.resourceUrl} />);
     }
 
+    urlToFileName(url){
+        let _split = url.split('/');
+        return _split[_split.length-1].split('+').join(' ');
+    }
+
     render(){
+        let fileName = this.urlToFileName(this.props.resourceUrl);
         return (
             <MDBContainer>
                 <div onClick={this.toggle}>
@@ -43,9 +50,10 @@ export default class PreviewFile extends React.Component {
                 </div>
 
                 <MDBModal isOpen={this.state.modal} toggle={this.toggle} backdrop={true}>
-                    <MDBModalHeader toggle={this.toggle}>Title</MDBModalHeader>
+                    <MDBModalHeader toggle={this.toggle}>View Confirmation</MDBModalHeader>
                     <MDBModalBody>
-                        <p>Do you want to view this file?</p>
+                        <p>Are you sure you want to view {fileName}?</p>
+                        <p>File size: {this.props.resourceSize}</p>
                     </MDBModalBody>
                     <MDBModalFooter>
                         <MDBBtn color="secondary" onClick={this.toggle}>Close</MDBBtn>

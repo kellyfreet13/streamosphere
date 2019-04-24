@@ -23,6 +23,7 @@ export default class UploadModalImpl extends Component {
     }
 
     closeModal() {
+        this.props.refreshAfterUpload();
         this.setState({
             visible: false
         });

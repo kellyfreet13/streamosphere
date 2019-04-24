@@ -47,38 +47,31 @@ export default class Grid extends Component {
     }
 
     render() {
-
-        console.log('[GridView.render]: filesJson '+this.state.filesJson);
-        console.log(this.state.filesJson.length);
-
         let numCols = 4;
         let numFiles = this.state.filesJson.length;
-        let numRows = Math.ceil(numFiles / numCols);
         let locJson = this.state.filesJson;
         let rowItems = [];
-        console.log('[GridView.render]: num rows '+numRows);
 
         // TODO: implement constructor so that this if is unnecessary
         if (locJson.length > 0) {
             for (let i = 0; i < numFiles; i += numCols){
-                console.log('row start index i: '+i);
                 let imageUrlsRow = [];
                 let resourceUrlsRow = [];
+                let resourceSizesRow = [];
                 let rowIndexMax = this.getUrlRowSize(i, numFiles)+i;
                 for (let j = i; j < rowIndexMax; j++){
-                    console.log('j: '+j);
-                    imageUrlsRow.push(locJson[j].ImageUrl)
-                    resourceUrlsRow.push(locJson[j].ResourceUrl)
+                    imageUrlsRow.push(locJson[j].ImageUrl);
+                    resourceUrlsRow.push(locJson[j].ResourceUrl);
+                    resourceSizesRow.push(locJson[j].Size);
                 }
-                console.log('[GridView.render]: image url row \n\t'+imageUrlsRow);
-                console.log('[GridView.render]: resource url row'+resourceUrlsRow);
 
-                let numCols = rowIndexMax-i
+                let numCols = rowIndexMax-i;
 
                 rowItems.push(
                     <GridRow
                         imageUrlsRow={imageUrlsRow}
                         resourceUrlsRow={resourceUrlsRow}
+                        resourceSizesRow={resourceSizesRow}
                         rowIndex={i}
                         numCols={numCols}
                         toggleMediaPlayerView={this.props.toggleMediaPlayerView}

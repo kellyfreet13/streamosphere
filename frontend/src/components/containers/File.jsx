@@ -8,8 +8,6 @@ export default class File extends Component {
             imageUrl: '',
             filename: this.props.filename,
             description: this.props.description,
-            dataFileName: this.props.datafilename,
-            dataAttr2: this.props.dataattr2,
             modal: false
         };
 
@@ -27,6 +25,7 @@ export default class File extends Component {
                 <PreviewFile
                     imageUrl={this.props.imageUrl}
                     resourceUrl={this.props.resourceUrl}
+                    resourceSize={this.props.resourceSize}
                     toggleMediaPlayerView={this.props.toggleMediaPlayerView}
                     setResourceToViewUrl={this.props.setResourceToViewUrl}
                 />

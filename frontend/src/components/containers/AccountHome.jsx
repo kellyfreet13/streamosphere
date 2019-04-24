@@ -39,7 +39,8 @@ export default class AccountHome extends Component {
                 fileName: '',
                 description: ''
             },
-            resourceToViewUrl: ''
+            resourceToViewUrl: '',
+            refreshAfterUpload: false
         };
 
         this.addCopy = this.addCopy.bind(this);
@@ -55,6 +56,9 @@ export default class AccountHome extends Component {
         // toggle whether to display files or library view
         this.toggleMediaPlayerView = this.toggleMediaPlayerView.bind(this);
         this.setResourceToViewUrl = this.setResourceToViewUrl.bind(this);
+
+        // simply to refresh state
+        this.refreshAfterUpload = this.refreshAfterUpload.bind(this);
     }
     editFileDescript = (description) => {
         let curList = this.state.files;
@@ -142,13 +146,23 @@ export default class AccountHome extends Component {
         this.setState({ resourceToViewUrl: url })
     }
 
+    // this is not working as expected. not refreshing
+    refreshAfterUpload() {
+        console.log("[AccountHome.refreshAfterUpload] called: ");
+        let cur = this.state.refreshAfterUpload;
+        this.setState({refreshAfterUpload: !cur});
+    }
+
     render() {
         return (
             <div>
                 <div id="streamosphere-banner">Streamosphere</div>
                 <div id="page-container">
                     <div id="left-content">
-                        <FileControlButtons newFolder={this.addNewFolder} />
+                        <FileControlButtons
+                            newFolder={this.addNewFolder}
+                            refreshAfterUpload={this.refreshAfterUpload}
+                        />
                     </div>
                     <div id="right-content">
                         {/*<Link to="/" style={styles.link}><Button>Logout</Button></Link> <br />*/}
