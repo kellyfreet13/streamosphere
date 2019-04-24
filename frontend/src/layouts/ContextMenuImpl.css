@@ -1,5 +1,5 @@
 .context-button {
-    min-width: 90px;
+    min-width: 100px;
     /*border-radius: 0;*/
     margin: 2px 0;
 }
@@ -8,4 +8,6 @@
     background-color: #fff;
     padding: 10px;
     text-align: center;
+    /* IT'S OVER 9000! */
+    z-index: 9000;
 }
