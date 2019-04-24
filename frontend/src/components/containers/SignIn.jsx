@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 // import { withRouter } from 'react-router-dom';
 // import SignUpLink from './LandingPage.jsx'
 // import { withFirebase } from '../firebase';
+import { Link } from 'react-router-dom';
 import * as ROUTES from '../../routes.jsx';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
@@ -30,12 +31,13 @@ class SignInFormBase extends Component {
 
     onSubmit = event => {
         const { email, password } = this.state;
-
+        this.props.history.push(ROUTES.HOME);
         this.props.firebase
             .doSignInWithEmailAndPassword(email, password)
             .then(() => {
-                this.setState({ ...ROUTES.LANDING });
-                this.props.history.push(ROUTES.HOME);
+                // may need to change this with auth
+                this.setState({ ...ROUTES.HOME });
+                this.props.history.push(ROUTES.LANDING);
             })
             .catch(error => {
                 this.setState({ error });
@@ -82,7 +84,7 @@ class SignInFormBase extends Component {
                         disabled={isInvalid}
                         className="signUpButton"
                         variant="light" >
-                    Sign In
+                    <Link to={ROUTES.HOME}>Sign In</Link>
                 </Button>
                 {error && <p>{error.message}</p>}
             </Form>

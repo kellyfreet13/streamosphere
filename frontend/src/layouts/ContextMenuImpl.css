@@ -11,3 +11,7 @@
     /* IT'S OVER 9000! */
     z-index: 9000;
 }
+
+.bold {
+    font-weight: bold;
+}

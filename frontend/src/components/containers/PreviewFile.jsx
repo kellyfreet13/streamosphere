@@ -1,6 +1,7 @@
 import {MDBBtn, MDBContainer, MDBModal, MDBModalBody, MDBModalFooter, MDBModalHeader} from "mdbreact";
 import React from "react";
 import DefaultImage from "../../images/play-316.png";
+import '../../layouts/ContextMenuImpl.css';
 
 export default class PreviewFile extends React.Component {
     constructor(props) {
@@ -52,7 +53,7 @@ export default class PreviewFile extends React.Component {
                 <MDBModal isOpen={this.state.modal} toggle={this.toggle} backdrop={true}>
                     <MDBModalHeader toggle={this.toggle}>View Confirmation</MDBModalHeader>
                     <MDBModalBody>
-                        <p>Are you sure you want to view {fileName}?</p>
+                        <p>Are you sure you want to view <span className="bold">{fileName}</span>?</p>
                         <p>File size: {this.props.resourceSize}</p>
                     </MDBModalBody>
                     <MDBModalFooter>
