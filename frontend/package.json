@@ -36,6 +36,7 @@
     "webpack-dev-server": "^3.3.1"
   },
   "dependencies": {
+    "aws-sdk": "^2.441.0",
     "babel-preset-env": "^1.7.0",
     "bootstrap": "^4.3.1",
     "firebase": "^5.8.6",
