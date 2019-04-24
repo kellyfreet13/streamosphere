@@ -1,0 +1,9 @@
+.landingBackground {
+    background-color: #3d84ff;
+}
+.landingBanner{
+    text-align: center;
+    margin-top: 32px;
+    font-size: 48px;
+    color: #272727;
+}
