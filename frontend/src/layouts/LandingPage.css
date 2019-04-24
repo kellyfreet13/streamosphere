@@ -1,9 +1,6 @@
-.landingBanner{
-    text-align: center;
-    margin-top: 48px;
-    font-size: 72px
+.landingBackground {
+    background-color: #272727;
 }
-
 .signUpForm {
     left: 25%;
     width: 512px;
@@ -22,11 +19,7 @@
 }
 
 .signInButton {
-    position: absolute;
     float: right;
-    padding: 4px;
-    right: 4%;
-    top: 4%;
 }
 
 .signUpButton {

@@ -1,25 +1,24 @@
-import { Router, Route, browserHistory } from 'react-router'
+import { BrowserRouter, Route, browserHistory } from 'react-router-dom'
 import React from 'react';
-import LandingPage from './components/containers/LandingPage.jsx'
-import SignInPage from './components/containers/SignIn.jsx'
-import HomePage from './components/containers/HomePage.jsx'
-import Navigation from './components/containers/Navigation.jsx'
+import SignUpFormBase from './components/containers/LandingPage.jsx'
+import SignInFormBase from './components/containers/SignIn.jsx'
+import AccountHome from './components/containers/AccountHome.jsx'
+//import Navigation from './components/containers/Navigation.jsx'
 // Anthony will add this later
 // import VideoPlayerComp from './components/containers/VideoPlayer.jsx'
 import * as ROUTES from './routes.jsx';
+import './layouts/App.css';
 
 class App extends React.Component {
     render() {
         return (
-            <Router history={browserHistory}>
-                <div>
-                    <Navigation />
-                    <Route exact path={ROUTES.LANDING} component={LandingPage} />
-                    <Route path={ROUTES.HOME} component={HomePage} />
-                    <Route path={ROUTES.SIGN_IN} component={SignInPage} />
+            <BrowserRouter history={browserHistory}>
+                <div className="landingBackground">
+                    <Route exact path={ROUTES.LANDING} component={SignUpFormBase} />
+                    <Route path={ROUTES.HOME} component={AccountHome} />
+                    <Route path={ROUTES.SIGN_IN} component={SignInFormBase} />
                 </div>
-            </Router>
-
+            </BrowserRouter>
         );
     }
 }

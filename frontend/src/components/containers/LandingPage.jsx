@@ -1,21 +1,19 @@
 import React from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
-import { Link, withRouter } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import * as ROUTES from '../../routes.jsx';
-import { withFirebase } from '../firebase';
-import SignIn from './SignIn.jsx';
+// import { withFirebase } from '../firebase';
+// import SignIn from './SignIn.jsx';
 import '../../layouts/LandingPage.css'
 
-const LandingPage = () => (
+/*const LandingPage = () => (
     <div>
-    <Button className="signInButton" variant="light"><Link to={ROUTES.SIGN_IN} component={SignIn}>Sign In</Link></Button>
+    <Button className="signInButton" variant="light"><Link to={ROUTES.SIGN_IN}>Sign In</Link></Button>
       <h1 className="landingBanner" >Streamosphere</h1>
       <SignUpForm />
     </div>
-
-
-);
+);*/
 
 
 const INITIAL_STATE = {
@@ -61,38 +59,42 @@ class SignUpFormBase extends React.Component {
         const isInvalid = password === '' || email === '';
 
         return (
-          <Form className="signUpForm"
-                onSubmit={this.onSubmit}>
-            <h1 className="signUpBanner">
-              Sign Up
-            </h1>
-            <Form.Group controlId="formSignUpEmail">
-              <Form.Label>Email address</Form.Label>
-              <Form.Control name="email"
-                            value={email}
-                            onChange={this.onChange}
-                            type="email"
-                            placeholder="Enter email" />
-              <Form.Text className="text-muted">
-                We'll never share your email with anyone else.
-              </Form.Text>
-            </Form.Group>
-            <Form.Group controlId="formSignUpPassword">
-              <Form.Label>Password</Form.Label>
-              <Form.Control name="password"
-                            value={password}
-                            onChange={this.onChange}
-                            type="password"
-                            placeholder="Password" />
-            </Form.Group>
-            <Button type="submit"
-                    disabled={isInvalid}
-                    className="signUpButton"
-                    variant="light" >
-              Sign Up
-            </Button>
-            {error && <p>{error.message}</p>}
-        </Form>
+            <div className="landingBackground">
+                <Button className="signInButton" variant="light"><Link to={ROUTES.SIGN_IN}>Sign In</Link></Button>
+                <h1 className="landingBanner" >Welcome to Streamosphere</h1>
+                <Form className="signUpForm"
+                      onSubmit={this.onSubmit}>
+                    <h1 className="signUpBanner">
+                        Sign Up
+                    </h1>
+                    <Form.Group controlId="formSignUpEmail">
+                        <Form.Label>Email address</Form.Label>
+                        <Form.Control name="email"
+                                      value={email}
+                                      onChange={this.onChange}
+                                      type="email"
+                                      placeholder="Enter email" />
+                        <Form.Text className="text-muted">
+                            We'll never share your email with anyone else.
+                        </Form.Text>
+                    </Form.Group>
+                    <Form.Group controlId="formSignUpPassword">
+                        <Form.Label>Password</Form.Label>
+                        <Form.Control name="password"
+                                      value={password}
+                                      onChange={this.onChange}
+                                      type="password"
+                                      placeholder="Password" />
+                    </Form.Group>
+                    <Button type="submit"
+                            disabled={isInvalid}
+                            className="signUpButton"
+                            variant="light" >
+                        Sign Up
+                    </Button>
+                    {error && <p>{error.message}</p>}
+                </Form>
+            </div>
         );
     }
   }
@@ -104,9 +106,9 @@ const SignUpLink = () => (
     </p>
 );
 
-const SignUpForm = SignUpFormBase;
+//const SignUpForm = SignUpFormBase;
 
 
-export default LandingPage;
+export default SignUpFormBase;
 
-export { SignUpForm, SignUpLink };
+//export { SignUpForm, SignUpLink };

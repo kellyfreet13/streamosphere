@@ -1,19 +1,19 @@
 import React, { Component } from 'react';
-import { withRouter } from 'react-router';
-import SignUpLink from './LandingPage.jsx'
-import { withFirebase } from '../firebase';
+// import { withRouter } from 'react-router-dom';
+// import SignUpLink from './LandingPage.jsx'
+// import { withFirebase } from '../firebase';
 import * as ROUTES from '../../routes.jsx';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import '../../layouts/LandingPage.css'
 
-const SignInPage = () => (
+/*const SignInPage = () => (
     <div>
         <h1 className="landingBanner" >Streamosphere</h1>
-        <SignInForm />
+        <SignInFormBase/>
         <SignUpLink />
     </div>
-);
+);*/
 
 const INITIAL_STATE = {
     email: '',
@@ -34,8 +34,8 @@ class SignInFormBase extends Component {
         this.props.firebase
             .doSignInWithEmailAndPassword(email, password)
             .then(() => {
-                this.setState({ ...INITIAL_STATE });
-                // this.props.history.push(ROUTES.HOME);
+                this.setState({ ...ROUTES.LANDING });
+                this.props.history.push(ROUTES.HOME);
             })
             .catch(error => {
                 this.setState({ error });
@@ -90,8 +90,8 @@ class SignInFormBase extends Component {
     }
 }
 
-const SignInForm = withFirebase(SignInFormBase);
+//const SignInForm = withRouter(SignInFormBase);
 
-export default SignInPage;
+export default SignInFormBase;
 
-export { SignInForm };
+//export { SignInForm };
