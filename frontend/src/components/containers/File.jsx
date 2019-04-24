@@ -8,8 +8,6 @@ export default class File extends Component {
             imageUrl: '',
             filename: this.props.filename,
             description: this.props.description,
-            dataFileName: this.props.datafilename,
-            dataAttr2: this.props.dataattr2,
             modal: false
         };
 
