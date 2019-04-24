@@ -17,7 +17,7 @@ export default class Grid extends Component {
 
     componentDidMount() {
         // eventually user ID will be passed down, get all files for user
-        let userId = '5c9acddba0f0b4e94109c632'
+        let userId = '5c9acddba0f0b4e94109c632';
         let allFilesUrl = consts.API_URL + '/users/'+userId+'/files';
         let that = this;
 
@@ -75,6 +75,7 @@ export default class Grid extends Component {
                         rowIndex={i}
                         numCols={numCols}
                         toggleMediaPlayerView={this.props.toggleMediaPlayerView}
+                        setResourceViewedThumbnailImage={this.props.setResourceViewedThumbnailImage}
                         setResourceToViewUrl={this.props.setResourceToViewUrl}
                     />)
             }

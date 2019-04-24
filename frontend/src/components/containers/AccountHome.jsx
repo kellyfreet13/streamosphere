@@ -27,18 +27,7 @@ export default class AccountHome extends Component {
             isModalOpen: false,
             handleShow: false,
             showMediaPlayer: false,
-            fromChild: '',
-            files: [
-                { fileName: "File 1", description: "an mp3 file"},
-                { fileName: "File 2", description: "an audio file"},
-                { fileName: "File 3", description: "an mp4 file"},
-                { fileName: "File 4", description: "a powerpoint"},
-                { fileName: "File 5", description: "a PDF file" },
-            ],
-            clickedFile: {
-                fileName: '',
-                description: ''
-            },
+            resourceViewedThumbnailImage: '',
             resourceToViewUrl: '',
             refreshAfterUpload: false
         };
@@ -55,6 +44,7 @@ export default class AccountHome extends Component {
 
         // toggle whether to display files or library view
         this.toggleMediaPlayerView = this.toggleMediaPlayerView.bind(this);
+        this.setResourceViewedThumbnailImage = this.setResourceViewedThumbnailImage.bind(this);
         this.setResourceToViewUrl = this.setResourceToViewUrl.bind(this);
 
         // simply to refresh state
@@ -141,6 +131,11 @@ export default class AccountHome extends Component {
         this.setState({ showMediaPlayer: !cur });
     }
 
+    setResourceViewedThumbnailImage(url){
+        console.log("[AccountHome.setResourceThumbnailImage] resource url: "+ url);
+        this.setState({resourceViewedThumbnailImage: url});
+    }
+
     setResourceToViewUrl(url) {
         console.log("[AccountHome.setResourceToView] resource url: "+ url);
         this.setState({ resourceToViewUrl: url })
@@ -172,7 +167,9 @@ export default class AccountHome extends Component {
                         {!this.state.showMediaPlayer &&
                             <GridView
                                 toggleMediaPlayerView={this.toggleMediaPlayerView}
+                                setResourceViewedThumbnailImage={this.setResourceViewedThumbnailImage}
                                 setResourceToViewUrl={this.setResourceToViewUrl}
+
                             />}
                         {this.state.showMediaPlayer &&
                             <MediaPlayerView

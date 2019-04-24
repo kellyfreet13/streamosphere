@@ -13,6 +13,7 @@ export default class GridCol extends Component {
                     resourceSize={this.props.resourceSize}
                     contextId={contextIdLoc}
                     toggleMediaPlayerView={this.props.toggleMediaPlayerView}
+                    setResourceViewedThumbnailImage={this.props.setResourceViewedThumbnailImage}
                     setResourceToViewUrl={this.props.setResourceToViewUrl}
                 />
             </div>

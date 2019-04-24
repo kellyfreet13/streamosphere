@@ -27,6 +27,7 @@ export default class File extends Component {
                     resourceUrl={this.props.resourceUrl}
                     resourceSize={this.props.resourceSize}
                     toggleMediaPlayerView={this.props.toggleMediaPlayerView}
+                    setResourceViewedThumbnailImage={this.props.setResourceViewedThumbnailImage}
                     setResourceToViewUrl={this.props.setResourceToViewUrl}
                 />
             </div>

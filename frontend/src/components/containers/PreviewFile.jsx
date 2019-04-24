@@ -24,6 +24,7 @@ export default class PreviewFile extends React.Component {
 
     handleResourceView() {
         this.props.setResourceToViewUrl(this.props.resourceUrl);
+        this.props.setResourceViewedThumbnailImage(this.props.imageUrl);
         this.props.toggleMediaPlayerView();
     }
 
