@@ -6,6 +6,7 @@ import * as ROUTES from '../../routes.jsx';
 import { withFirebase } from '../firebase';
 // import SignIn from './SignIn.jsx';
 import '../../layouts/LandingPage.css'
+import * as consts from '../../Constants.js';
 
 /*const LandingPage = () => (
     <div>
@@ -27,18 +28,35 @@ class SignUpFormBase extends React.Component {
         super(props);
 
         this.state = { ...INITIAL_STATE };
+        this.createGist = this.createGist.bind(this);
+        this.userId = -1
     }
+
+    async createGist(email) {
+        let url = consts.API_URL + '/user';
+        let userId = await fetch(url, {
+            method: 'post',
+            body: JSON.stringify({"Email": email})
+        }).then(function (response) {
+            return response.json();
+        }).then(function (data) {
+            return data.UserID;
+        });
+        return userId
+    }
+
     onSubmit = event => {
-        console.log("Props");
-        console.log(this.props);
+        let that = this;
+
         const { history } = this.props;
         const { email, password } = this.state;
         this.props.firebase
             .doCreateUserWithEmailAndPassword(email, password)
-            .then(authUser => {
-              this.setState({ ...INITIAL_STATE });
-              this.props.history.push(ROUTES.HOME);
-
+            .then(async function(authUser){
+              that.setState({ ...INITIAL_STATE });
+              let userId = await that.createGist(email);
+              localStorage.setItem('userid', userId)
+              that.props.history.push(ROUTES.HOME);
             })
             .catch(error => {
               this.setState({ error });

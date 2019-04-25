@@ -21,7 +21,6 @@ export default class AccountHome extends Component {
 
     constructor(props) {
         super(props);
-
         this.state = {
             isCustomMenuOpen: false,
             isModalOpen: false,
