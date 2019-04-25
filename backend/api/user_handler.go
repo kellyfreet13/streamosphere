@@ -21,7 +21,7 @@ type User struct {
 }
 
 type GetUser struct {
-    Email       string  `bson:"Email,omitempty" json:"Email,omitempty"`
+    Email       string  `bson:"Email" json:"Email"`
 }
 
 // get all users
@@ -70,10 +70,10 @@ func GetUserIdByEmail(c *gin.Context) {
     client := GetMongoClient()
     user_coll := client.Database("streamosphere").Collection("users")
 
-    var json_req GetUser
-    c.BindJSON(&json_req)
+    //var json_req GetUser
+    //c.BindJSON(&json_req)
 
-    user_email := json_req.Email
+    user_email := c.Param("Email")
     filter := bson.M{"Email": user_email}
     res := user_coll.FindOne(context.TODO(), filter)
 
