@@ -9,7 +9,6 @@ export default class Grid extends Component {
         super(props);
 
         this.state = {
-            filesJson: [],
             numCols: 4
         }
 
@@ -19,26 +18,6 @@ export default class Grid extends Component {
         this.componentWidth = React.createRef();
     }
 
-    componentDidMount() {
-        let userId = localStorage.getItem("userid");
-        let allFilesUrl = consts.API_URL + '/users/'+userId+'/files';
-        let that = this;
-
-        fetch(allFilesUrl)
-            .then( res => {
-                if (res.status >= 400) { throw new Error("Bad response from server")}
-                return res.json();
-            })
-            .then( data => {
-                for (let i = 0; i < data.length; i++){
-                    console.log(data[i]);
-                }
-                console.log('GridView.WillMount: '+data);
-                that.setState( { filesJson: data})
-            })
-
-        console.log('[AccountHome.mounted] component width '+this.componentWidth.current.offsetWidth);
-    }
 
     getUrlRowSize(i, len) {
         let cols = len - i;
@@ -53,8 +32,8 @@ export default class Grid extends Component {
 
     render() {
         let numCols = this.state.numCols;
-        let numFiles = this.state.filesJson.length;
-        let locJson = this.state.filesJson;
+        let numFiles = this.props.filesJson.length;
+        let locJson = this.props.filesJson;
         let rowItems = [];
 
         // TODO: implement constructor so that this if is unnecessary

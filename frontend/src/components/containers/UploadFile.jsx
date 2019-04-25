@@ -81,9 +81,6 @@ class UploadFile extends Component {
             let uploadFileUrl = 'http://streamosphere.net:8080/api/users/'+_userId+'/files';
             req.open("POST", uploadFileUrl);
             req.send(formData);
-
-            // please refresh the freakin state
-            this.props.refreshAfterUpload();
         });
     }
 

@@ -35,9 +35,7 @@ export default class UploadModalImpl extends Component {
             <div>
                 <Button className="file-button" onClick={() => this.openModal()}>Upload</Button>
                 <Modal visible={this.state.visible} effect="fadeInUp" width="1000" height="300" onClickAway={() => this.closeModal()}>
-                    <UploadFile
-
-                    />
+                    <UploadFile/>
                 </Modal>
             </div>
         );

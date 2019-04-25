@@ -15,10 +15,11 @@ import EditDescription from './EditDescription.jsx';
 
 // styling
 import '../../layouts/AccountHome.css';
+import * as consts from "../../Constants";
 
 
 export default class AccountHome extends Component {
-
+    
     constructor(props) {
         super(props);
         this.state = {
@@ -28,8 +29,8 @@ export default class AccountHome extends Component {
             showMediaPlayer: false,
             resourceViewedThumbnailImage: '',
             resourceToViewUrl: '',
-            stateRefreshAfterUpload: false,
-            userId: localStorage.getItem('userid')
+            userId: localStorage.getItem('userid'),
+            filesJson: []
         };
 
         // toggle whether to display files or library view
@@ -60,8 +61,42 @@ export default class AccountHome extends Component {
     // this is not working as expected. not refreshing
     refreshAfterUpload() {
         console.log("[AccountHome.refreshAfterUpload] called: ");
-        let cur = this.state.stateRefreshAfterUpload;
-        this.setState({stateRefreshAfterUpload: !cur});
+
+        let userId = localStorage.getItem("userid");
+        let allFilesUrl = consts.API_URL + '/users/'+userId+'/files';
+        let that = this;
+
+        fetch(allFilesUrl)
+            .then( res => {
+                if (res.status >= 400) { throw new Error("Bad response from server")}
+                return res.json();
+            })
+            .then( data => {
+                for (let i = 0; i < data.length; i++){
+                    console.log(data[i]);
+                }
+                console.log('GridView.WillMount: '+data);
+                that.setState( { filesJson: data})
+            });
+    }
+
+    componentDidMount() {
+        let userId = localStorage.getItem("userid");
+        let allFilesUrl = consts.API_URL + '/users/'+userId+'/files';
+        let that = this;
+
+        fetch(allFilesUrl)
+            .then( res => {
+                if (res.status >= 400) { throw new Error("Bad response from server")}
+                return res.json();
+            })
+            .then( data => {
+                for (let i = 0; i < data.length; i++){
+                    console.log(data[i]);
+                }
+                console.log('GridView.WillMount: '+data);
+                that.setState( { filesJson: data})
+            })
     }
 
     render() {
@@ -88,32 +123,17 @@ export default class AccountHome extends Component {
                                 toggleMediaPlayerView={this.toggleMediaPlayerView}
                                 setResourceViewedThumbnailImage={this.setResourceViewedThumbnailImage}
                                 setResourceToViewUrl={this.setResourceToViewUrl}
-                                refresh={this.state.stateRefreshAfterUpload}
+                                filesJson={this.state.filesJson}
                             />}
                         {this.state.showMediaPlayer &&
                             <MediaPlayerView
                                 toggleMediaPlayerView={this.toggleMediaPlayerView}
                                 resourceToViewUrl={this.state.resourceToViewUrl}
                             />}
-                        {/* simply so the state will refresh after upload of files */}
-                        <p className="hidden-refresh">{this.state.stateRefreshAfterUpload}</p>
                     </div>
                 </div>
             </div>
         );
     }
-    removeFile() {
-        let curList = this.state.files;
-        for (var i = 0; i < curList.length; i++) {
-            if (this.state.clickedFile.fileName == curList[i].fileName) {
-                curList.splice(i, 1);
-            }
-        }
-        this.setState({
-            files: curList
-        });
-    }
-    handleClickIndex(index, event) {
-        eval(this[event.target.name]).bind(this)(index, event)
-    }
+
 }
