@@ -47,7 +47,6 @@ class SignUpFormBase extends React.Component {
 
     onSubmit = event => {
         let that = this;
-
         const { history } = this.props;
         const { email, password } = this.state;
         this.props.firebase
@@ -55,7 +54,7 @@ class SignUpFormBase extends React.Component {
             .then(async function(authUser){
               that.setState({ ...INITIAL_STATE });
               let userId = await that.createGist(email);
-              localStorage.setItem('userid', userId)
+              localStorage.setItem('userid', userId);
               that.props.history.push(ROUTES.HOME);
             })
             .catch(error => {
