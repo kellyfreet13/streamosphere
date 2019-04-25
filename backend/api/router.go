@@ -35,7 +35,7 @@ func initRoutes(){
         // ------------------------- USERS -------------------------
         api.GET("/users", GetUsers)
         api.POST("/user", CreateUser)
-        api.GET("/user", GetUserIdByEmail)
+        api.GET("/user/:Email", GetUserIdByEmail)
 
         // ----------------------- FOLDERS -------------------------
         api.GET("/users/:UserID/folders", GetAllFolders)
